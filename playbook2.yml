@@ -1,52 +1,61 @@
-- name: Demo on Variables
+#- name: Demo on Variables
+#  hosts: all
+#  vars:
+#    cname: BVRIT Hyderabad
+#  tasks:
+#    - name: Task1
+#      ansible.builtin.debug:
+#        msg: "Task level variable- {{cname}}"
+#- name: File level Variables
+#  hosts: all
+#  vars_files:
+#    - variable_files.yml
+#  tasks:
+#    - name: Task2
+#      ansible.builtin.debug:
+#        msg: "This is file level variable- {{cname}}"
+#    - name: Task3
+#      ansible.builtin.debug:
+#        msg: "Location- {{Location}}"
+#- name: This is the play for task level varaibles
+#  hosts: all
+#  vars:
+#    cname: SKEC
+#  vars_files:
+#    - variable_files.yml
+#  tasks:
+#    - name: Task level variable
+#      ansible.builtin.debug:
+#        msg: "The task level variable value is -{{cname}}"
+#      vars:
+#        cname: SVEC
+#    - name: Second task level variable
+#      ansible.builtin.debug:
+#        msg: "The variable will be play level variable-{{cname}}"
+#- name: Play for inventory level variables
+#  hosts: all
+#  tasks:
+#    - name: Inventory level variables
+#      ansible.builtin.debug:
+#        msg: "This is inventory level variable-{{cname}}"
+#- name: Command Line varibales
+#  hosts: all
+#  tasks:
+#    - name: Command line1
+#      ansible.builtin.debug:
+#        msg: This is is command line variable-{{cname}}
+#- name: Predefined varibales or facts
+#  hosts: all
+#  tasks:
+#    - name: facts retrieving
+#      ansible.builtin.debug:
+#        msg: The predefined varible printing {{ansible_virtualization_tech_guest}}
+- name: Storing in the register variable
   hosts: all
-  vars:
-    cname: BVRIT Hyderabad
   tasks:
-    - name: Task1
+    - name: shell command execution
+      ansible.builtin.shell: uptime
+      regsiter: x
+    - name: Printing the value in x
       ansible.builtin.debug:
-        msg: "Task level variable- {{cname}}"
-- name: File level Variables
-  hosts: all
-  vars_files:
-    - variable_files.yml
-  tasks:
-    - name: Task2
-      ansible.builtin.debug:
-        msg: "This is file level variable- {{cname}}"
-    - name: Task3
-      ansible.builtin.debug:
-        msg: "Location- {{Location}}"
-- name: This is the play for task level varaibles
-  hosts: all
-  vars:
-    cname: SKEC
-  vars_files:
-    - variable_files.yml
-  tasks:
-    - name: Task level variable
-      ansible.builtin.debug:
-        msg: "The task level variable value is -{{cname}}"
-      vars:
-        cname: SVEC
-    - name: Second task level variable
-      ansible.builtin.debug:
-        msg: "The variable will be play level variable-{{cname}}"
-- name: Play for inventory level variables
-  hosts: all
-  tasks:
-    - name: Inventory level variables
-      ansible.builtin.debug:
-        msg: "This is inventory level variable-{{cname}}"
-- name: Command Line varibales
-  hosts: all
-  tasks:
-    - name: Command line1
-      ansible.builtin.debug:
-        msg: This is is command line variable-{{cname}}
-- name: Predefined varibales or facts
-  hosts: all
-  tasks:
-    - name: facts retrieving
-      ansible.builtin.debug:
-        msg: The predefined varible printing {{ansible_virtualization_tech_guest}}
+        msg: "{{x}}"
