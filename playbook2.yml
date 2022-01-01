@@ -19,6 +19,8 @@
         msg: "Location- {{Location}}"
 - name: This is the play for task level varaibles
   hosts: all
+  vars:
+    cname: SKEC
   tasks:
     - name: Task level variable
       ansible.builtin.debug:
