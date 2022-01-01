@@ -58,4 +58,4 @@
       register: x
     - name: Printing the value in x
       ansible.builtin.debug:
-        msg: "{{x}}"
+        msg: "{{x.stdout}}"
