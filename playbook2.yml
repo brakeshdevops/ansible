@@ -38,3 +38,9 @@
     - name: Inventory level variables
       ansible.builtin.debug:
         msg: "This is inventory level variable-{{cname}}"
+- name: Command Line varibales
+  hosts: all
+  tasks:
+    - name: Command line1
+      ansible.builtin.debug:
+        msg: This is is command line variable-{{cname}}
