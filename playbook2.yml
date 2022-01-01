@@ -14,4 +14,6 @@
     - name: Task2
       ansible.builtin.debug:
         msg: "This is file level variable- {{cname}}"
-        msg1: "Location- {{Location}}"
+    - name: Task3
+      ansible.builtin.debug:
+        msg: "Location- {{Location}}"
