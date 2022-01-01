@@ -44,3 +44,9 @@
     - name: Command line1
       ansible.builtin.debug:
         msg: This is is command line variable-{{cname}}
+- name: Predefined varibales or facts
+  hosts: all
+  tasks:
+    - name: facts retrieving
+      ansible.builtin.debug:
+        msg: The predefined varible printing {{ansible_virtualization_tech_guest}}
