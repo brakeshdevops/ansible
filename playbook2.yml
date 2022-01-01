@@ -21,8 +21,8 @@
   hosts: all
   vars:
     cname: SKEC
-  vars_files:
-    - variable_files.yml
+#  vars_files:
+#    - variable_files.yml
   tasks:
     - name: Task level variable
       ansible.builtin.debug:
