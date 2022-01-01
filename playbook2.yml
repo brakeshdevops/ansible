@@ -32,3 +32,9 @@
     - name: Second task level variable
       ansible.builtin.debug:
         msg: "The variable will be play level variable-{{cname}}"
+- name: Play for inventory level variables
+  hosts: all
+  tasks:
+    - name: Inventory level variables
+      ansible.builtin.debug:
+        msg: "This is inventory level variable-{{cname}}"
