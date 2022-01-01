@@ -55,3 +55,7 @@
   tasks:
     - name: command execution
       ansible.builtin.shell: uptime
+      register: x
+    - name: Printing the value in x
+      ansible.builtin.debug:
+        msg: {{x}}
