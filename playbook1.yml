@@ -3,4 +3,7 @@
   tasks:
     - name: Task1
       ansible.builtin.debug:
-        msg: Welcome to first ansible playbook
+        msg: 'Welcome to first ansible playbook'
+    - name: Task2
+      ansible.builtin.debug:
+        msg: "This is second statement"
