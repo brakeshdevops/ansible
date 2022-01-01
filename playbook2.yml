@@ -53,9 +53,5 @@
 - name: Storing in the register variable
   hosts: all
   tasks:
-    - name: shell command execution
+    - name: command execution
       ansible.builtin.shell: uptime
-      regsiter: x
-    - name: Printing the value in x
-      ansible.builtin.debug:
-        msg: "{{x}}"
