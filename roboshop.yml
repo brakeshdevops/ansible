@@ -1,0 +1,4 @@
+- name: front end setup
+  hosts: FRONTEND
+  roles:
+    - frontend
