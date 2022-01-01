@@ -11,4 +11,4 @@
         msg: "This is second statement"
     - name: Task3
       ansible.builtin.debug:
-        msg: "{{a}} This is the value printing statement"
+        msg: This is the value printing statement {{a}}
