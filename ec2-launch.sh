@@ -20,7 +20,7 @@ CREATE()
 }
 if [ ${COMPONENT} == 'all' ]; then
   for comp in frontend mongodb catalogue; do
-    COMPONENT=$1
+    COMPONENT=$comp
     CREATE
     done
 else
