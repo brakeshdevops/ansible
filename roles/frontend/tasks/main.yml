@@ -2,3 +2,9 @@
   ansible.builtin.yml:
     name: nginx
     state: installed
+
+- name: Download and Unzip the frontend content
+  ansible.builtin.unarchive:
+    src: https://github.com/roboshop-devops-project/frontend/archive/main.zip
+    dest: /tmp
+    remote_src: yes
