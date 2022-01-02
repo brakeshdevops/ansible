@@ -24,5 +24,5 @@ if [ "$COMPONENT" == "all" ]; then
     CREATE_INSTANCE
   done
 else
-    CREATE_INSTANCE
+  CREATE_INSTANCE
 fi
