@@ -5,7 +5,7 @@ if [ -z "${COMPONENT}" ]; then
 fi
 temp_id="lt-0803b1e328525c4de"
 ZONE_ID="Z09972541YT3UVO8YWPEG"
-CREATE()
+CREATE_INSTANCE()
 {
   aws ec2 describe-instances --filters "Name=tag:Name,Values=${COMPONENT}"|jq .Reservations[].Instances[].State.Name | sed 's/"//g'|grep -E 'running|stopped' &>>/dev/null
   if [ $? -eq 0 ]; then
@@ -18,11 +18,11 @@ CREATE()
   sed -e "s/IPADDRESS/${IPADDRESS}/" -e "s/COMPONENT/${COMPONENT}/" record.json >/tmp/record.json
   aws route53 change-resource-record-sets --hosted-zone-id ${ZONE_ID} --change-batch file:///tmp/record.json | jq
 }
-if [ ${COMPONENT} == 'all' ]; then
+if [ "$COMPONENT" == "all" ]; then
   for comp in frontend mongodb catalogue; do
     COMPONENT=$comp
-    CREATE
-    done
+    CREATE_INSTANCE
+  done
 else
-    CREATE
+    CREATE_INSTANCE
 fi
