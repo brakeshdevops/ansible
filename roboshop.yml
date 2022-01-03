@@ -3,3 +3,8 @@
   hosts: FRONTEND
   roles:
     - frontend
+- name: mongodb setup
+  become: yes
+  hosts: MONGODB
+  roles:
+    - mongodb

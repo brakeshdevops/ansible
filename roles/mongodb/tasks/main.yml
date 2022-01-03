@@ -1,0 +1,15 @@
+- name: copy mongodb repo
+  ansible.builtin.copy:
+    src: mongo.repo
+    dest: /etc/yum.repos.d/mongodb.repo
+
+- name: Update config file to listen 0.0.0.0
+  ansible.builtin.replace:
+    path: /etc/mongod.conf
+    regexp: '127.0.0.1'
+    replace: '0.0.0.0'
+- name: Start nginx service
+  ansible.builtin.systemd:
+    name: mongod
+    state: started
+    enabled: yes
