@@ -3,6 +3,11 @@
     src: mongo.repo
     dest: /etc/yum.repos.d/mongodb.repo
 
+- name: Install nginx
+  ansible.builtin.yum:
+    name: mongodb-org
+    state: installed
+
 - name: Update config file to listen 0.0.0.0
   ansible.builtin.replace:
     path: /etc/mongod.conf
