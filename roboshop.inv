@@ -1,7 +1,7 @@
 [FRONTEND]
-frontend-prod.roboshop.internal
+frontend-dev.roboshop.internal
 [MONGODB]
-mongodb-prod.roboshop.internal
+mongodb-dev.roboshop.internal
 [REDIS]
 redis-dev.roboshop.internal
 [RABBITMQ]
