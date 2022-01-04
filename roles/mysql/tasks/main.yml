@@ -47,4 +47,4 @@
   register: default_password
 - name: print default password
   ansible.builtin.debug:
-    msg: "{{default_password}}"
+    msg: "{{default_password.stdout}}"
