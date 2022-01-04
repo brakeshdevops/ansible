@@ -34,3 +34,9 @@
   hosts: CART
   roles:
     - cart
+- name: mysql setup
+  become: yes
+  tags: MYSQL
+  hosts: MYSQL
+  roles:
+    - mysql
