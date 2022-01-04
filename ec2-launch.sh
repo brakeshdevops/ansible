@@ -1,4 +1,8 @@
 COMPONENT=$1
+ENV=$2
+if [ ! -z "$ENV" ]; then
+  ENV="-${ENV}"
+fi
 if [ -z "${COMPONENT}" ]; then
   echo "input missing"
   exit
@@ -18,11 +22,5 @@ CREATE_INSTANCE()
   sed -e "s/IPADDRESS/${IPADDRESS}/" -e "s/COMPONENT/${COMPONENT}/" record.json >/tmp/record.json
   aws route53 change-resource-record-sets --hosted-zone-id ${ZONE_ID} --change-batch file:///tmp/record.json | jq
 }
-if [ "$COMPONENT" == "all" ]; then
-  for comp in frontend mongodb catalogue; do
-    COMPONENT=$comp
-    CREATE_INSTANCE
-  done
-else
+COMPONENT=$COMPONENT$ENV
   CREATE_INSTANCE
-fi

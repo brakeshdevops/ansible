@@ -46,3 +46,8 @@
   community.general.npm:
     path: /home/roboshop/catalogue
   become_user: roboshop
+
+- name: Update catlogue systemd file
+  ansible.builtin.template:
+    src: systemd.service
+    dest: /etc/systemd/system/catalogue.service
