@@ -51,3 +51,10 @@
   ansible.builtin.template:
     src: systemd.service
     dest: /etc/systemd/system/catalogue.service
+
+- name: start catalogue systemd
+  ansible.builtin.systemd:
+    name: catalogue
+    state: restarted
+    enabled: yes
+    daemon-reload: yes
