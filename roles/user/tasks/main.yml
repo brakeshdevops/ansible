@@ -1,4 +1,4 @@
-- name: install nodejs for catalogue
+- name: install nodejs for user
   ansible.builtin.import_role:
     name: common
     tasks_from: nodejs
