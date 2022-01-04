@@ -3,13 +3,13 @@
 #  hosts: FRONTEND
 #  roles:
 #    - frontend
-#- name: mongodb setup
-#  become: yes
-#  hosts: MONGODB
-#  roles:
-#    - mongodb
-- name: catalogue setup
+- name: mongodb setup
   become: yes
-  hosts: CATALOGUE
+  hosts: MONGODB
   roles:
-    - catalogue
+    - mongodb
+#- name: catalogue setup
+#  become: yes
+#  hosts: CATALOGUE
+#  roles:
+#    - catalogue
