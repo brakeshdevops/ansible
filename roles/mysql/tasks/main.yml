@@ -50,16 +50,17 @@
     login_user: root
     login_password: "{{MYSQL_ROOT_PASSWORD}}"
   register: out
-- name: grab default password
-  ansible.builtin.shell: sudo grep 'temporary password' /var/log/mysqld.log|awk '{print $NF}'
-  register: default_password
+- name: change the default password
   when: out.failed | bool
-- name: copy sql script for password reset
-  ansible.builtin.template:
-    src: root-pass-recent.sql
-    dest: /tmp/root-pass-recent.sql
-  when: out.failed | bool
+  block:
+    - name: grab default password
+      ansible.builtin.shell: sudo grep 'temporary password' /var/log/mysqld.log|awk '{print $NF}'
+      register: default_password
 
-- name: change mysql password
-  ansible.builtin.shell: mysql --connect-expired-password -uroot -p"{{default_password.stdout}}" </tmp/root-pass-recent.sql
-  when: out.failed | bool
+    - name: copy sql script for password reset
+      ansible.builtin.template:
+        src: root-pass-recent.sql
+        dest: /tmp/root-pass-recent.sql
+
+    - name: change mysql password
+      ansible.builtin.shell: mysql --connect-expired-password -uroot -p"{{default_password.stdout}}" </tmp/root-pass-recent.sql
