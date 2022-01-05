@@ -27,5 +27,5 @@
     regexp: '^gid'
     line: gid = {{app_user_info.group}}
 
-#- name: setup service and start service
-#  import_tasks: systemd.yml
+- name: setup service and start service
+  import_tasks: systemd.yml
