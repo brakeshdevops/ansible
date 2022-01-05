@@ -1,0 +1,21 @@
+
+- name: Install maven
+  yum:
+    name:
+      - maven
+    state: present
+- name: Application user setup and Download app files
+  import_tasks: app-user-setup.yml
+
+
+#- name: Update catlogue systemd file
+#  ansible.builtin.template:
+#    src: systemd.service
+#    dest: /etc/systemd/system/{{COMPONENT}}.service
+#
+#- name: start {{COMPONENT}} systemd
+#  ansible.builtin.systemd:
+#    name: "{{COMPONENT}}"
+#    state: restarted
+#    enabled: yes
+#    daemon-reload: yes
