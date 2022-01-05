@@ -3,6 +3,7 @@
   vars:
     x: "krishna"
     val: 10
+    b: true
   tasks:
     - name: Task1
       ansible.builtin.debug:
@@ -20,3 +21,7 @@
       ansible.builtin.debug:
         msg: The value of val is greater than 10
       when: val | int>10
+    - name: Task5
+      ansible.builtin.debug:
+        msg: The value is true
+      when: b
