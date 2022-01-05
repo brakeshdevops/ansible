@@ -40,3 +40,9 @@
   hosts: MYSQL
   roles:
     - mysql
+- name: shipping setup
+  become: yes
+  tags: SHIPPING
+  hosts: SHIPPING
+  roles:
+    - shipping
