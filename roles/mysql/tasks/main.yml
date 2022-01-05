@@ -56,9 +56,4 @@
     dest: /tmp/root-pass-recent.sql
 
 - name: change mysql password
-  community.mysql.mysql_db:
-    state: import
-    name: all
-    target: /tmp/root-pass-recent.sql
-    login_user: root
-    login_password: "{{default_password.stdout}}"
+  ansible.builtin.shell: mysql --connect-expired-password -uroot -p"{{default_password.stdout}}" </tmp/root-pass-recent.sql
