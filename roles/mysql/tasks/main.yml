@@ -48,7 +48,7 @@
   community.mysql.mysql_query:
     query: "show databases"
     login_user: root
-    login_password: {{MYSQL_ROOT_PASSWORD}}
+    login_password: "{{MYSQL_ROOT_PASSWORD}}"
   register: out
 - name: grab default password
   ansible.builtin.shell: sudo grep 'temporary password' /var/log/mysqld.log|awk '{print $NF}'
