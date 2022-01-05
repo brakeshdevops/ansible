@@ -52,3 +52,9 @@
   hosts: RABBITMQ
   roles:
     - rabbitmq
+- name: payment setup
+  become: yes
+  tags: PAYMENT
+  hosts: PAYMENT
+  roles:
+    - payment
