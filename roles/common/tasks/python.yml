@@ -1,0 +1,20 @@
+
+- name: Install python
+  ansible.builtin.yum:
+    name:
+      - python36
+      - gcc
+      - python3-devel
+    state: installed
+- name: Application user setup and Download app files
+  import_tasks: app-user-setup.yml
+
+- name: Install python dependencies
+  ansible.builtin.pip:
+    requirements: /home/roboshop/{{COMPONENT}}/requirements.txt
+    executable: pip3
+- name: show app user info
+  ansible.buitlin.debug:
+    msg: "{{app_user_info}}"
+#- name: setup service and start service
+#  import_tasks: systemd.yml
