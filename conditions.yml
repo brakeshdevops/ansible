@@ -1,4 +1,5 @@
 - name: conditional statements
+  hosts: localhost
   vars:
     x: 6
   tasks:
