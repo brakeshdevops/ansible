@@ -44,16 +44,22 @@
     name: mysqld
     state: started
     enabled: true
+- name: check if the new root password is working or not
+  community.mysql.mysql_query:
+    query: "show databases"
+    login_user: root
+    login_password: {{MYSQL_ROOT_PASSWORD}}
+  register: out
 - name: grab default password
   ansible.builtin.shell: sudo grep 'temporary password' /var/log/mysqld.log|awk '{print $NF}'
   register: default_password
-#- name: print default password
-#  ansible.builtin.debug:
-#    msg: "{{default_password.stdout}}"
+  when: out.failed | bool
 - name: copy sql script for password reset
   ansible.builtin.template:
     src: root-pass-recent.sql
     dest: /tmp/root-pass-recent.sql
+  when: out.failed | bool
 
 - name: change mysql password
   ansible.builtin.shell: mysql --connect-expired-password -uroot -p"{{default_password.stdout}}" </tmp/root-pass-recent.sql
+  when: out.failed | bool
