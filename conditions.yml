@@ -1,6 +1,6 @@
 - name: conditional statements
   vars:
-    x=6
+    x: 6
   tasks:
     - name: Task1
       ansible.builtin.debug:
