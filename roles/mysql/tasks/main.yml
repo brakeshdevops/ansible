@@ -53,7 +53,7 @@
 - name: change the default password
   when: out.failed | bool
   block:
-    - name: grab default password
+    - name: grabbing default password
       ansible.builtin.shell: sudo grep 'temporary password' /var/log/mysqld.log|awk '{print $NF}'
       register: default_password
 
