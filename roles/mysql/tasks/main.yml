@@ -58,4 +58,4 @@
     name: all
     target: /tmp/mysql-main/shipping.sql
     login_user: root
-    login_password: {{MYSQL_ROOT_PASSWORD}}
+    login_password: "{{MYSQL_ROOT_PASSWORD}}"
