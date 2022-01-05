@@ -67,5 +67,5 @@
       ansible.builtin.shell: mysql --connect-expired-password -uroot -p"{{default_password.stdout}}" </tmp/root-pass-recent.sql
 
 - name: uninstall validate password plugin
-  ansible.builtin.shell: (echo 'show plugins;' | mysql -uroot -p"{{MYSQL_ROOT_PASSWORD}}" | grep validate_password)
-  ingnore_errors: true
+  ansible.builtin.shell: (echo 'show plugins;' | mysql -uroot -p"{{MYSQL_ROOT_PASSWORD}}" | grep validate_password) && (echo 'uninstall plugin validate_password;' | mysql -uroot -p"{{MYSQL_ROOT_PASSWORD}}")
+  ignore_errors: true
