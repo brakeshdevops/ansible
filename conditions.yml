@@ -15,8 +15,8 @@
     - name: Task3
       ansible.builtin.debug:
         msg: The value of val is less than or equals to 10
-      when: val | val<=10
+      when: val | int<=10
     - name: Task4
       ansible.builtin.debug:
         msg: The value of val is greater than 10
-      when: val | val>10
+      when: val | int>10
