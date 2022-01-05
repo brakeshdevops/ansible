@@ -1,13 +1,13 @@
 - name: conditional statements
   hosts: localhost
   vars:
-    x: 6
+    x: "krishna"
   tasks:
     - name: Task1
       ansible.builtin.debug:
-        msg: The value of x is greater than or equals to 6
-      when: x>=6
+        msg: The value of x is krishna
+      when: x=="krishna"
     - name: Task2
       ansible.builtin.debug:
-        msg: The value of x is less than 6
-      when: x<6
+        msg: The value of x is not krishna
+      when: x!="krishna"
