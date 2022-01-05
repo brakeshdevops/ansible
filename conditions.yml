@@ -1,0 +1,12 @@
+- name: conditional statements
+  vars:
+    x=6
+  tasks:
+    - name: Task1
+      ansible.builtin.debug:
+        msg: The value of x is greater than or equals to 6
+      when: x>=6
+    - name: Task2
+      ansible.builtin.debug:
+        msg: The value of x is less than 6
+      when: x<6
