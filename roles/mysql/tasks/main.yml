@@ -59,4 +59,4 @@
     name: all
     target: /tmp/root-pass-recent.sql
     login_user: root
-    logi_password: "{{default_password.stdout}}"
+    login_password: "{{default_password.stdout}}"
