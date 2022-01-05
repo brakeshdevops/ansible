@@ -6,39 +6,13 @@
       - make
       - gcc-c++
     state: present
-- name: Add the user roboshop
-  ansible.builtin.user:
-    name: roboshop
+- name: Application user setup and Download app files
+  import_tasks: app-user-setup.yml
 
-- name: ansible download {{COMPONENT}} role
-  ansible.builtin.import_role:
-    name: common
-    tasks_from: download
-
-- name: Remove old content
-  ansible.builtin.file:
-    path: /home/roboshop/{{COMPONENT}}
-    state: absent
-
-- name: Copy application content as roboshop user
-  ansible.builtin.copy:
-    src: /tmp/{{COMPONENT}}-main/
-    dest: /home/roboshop/{{COMPONENT}}/
-    remote_src: yes
-  become_user: roboshop
 - name: Install npm module
   community.general.npm:
     path: /home/roboshop/{{COMPONENT}}
   become_user: roboshop
 
-- name: Update catlogue systemd file
-  ansible.builtin.template:
-    src: systemd.service
-    dest: /etc/systemd/system/{{COMPONENT}}.service
-
-- name: start {{COMPONENT}} systemd
-  ansible.builtin.systemd:
-    name: "{{COMPONENT}}"
-    state: restarted
-    enabled: yes
-    daemon-reload: yes
+- name: setup service and start service
+  import_tasks: systemd.yml

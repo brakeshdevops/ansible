@@ -12,14 +12,6 @@
   args:
     chdir: /home/roboshop/{{COMPONENT}}
   become_user: roboshop
-#- name: Update catlogue systemd file
-#  ansible.builtin.template:
-#    src: systemd.service
-#    dest: /etc/systemd/system/{{COMPONENT}}.service
-#
-#- name: start {{COMPONENT}} systemd
-#  ansible.builtin.systemd:
-#    name: "{{COMPONENT}}"
-#    state: restarted
-#    enabled: yes
-#    daemon-reload: yes
+
+- name: setup service and start service
+  import_tasks: systemd.yml
