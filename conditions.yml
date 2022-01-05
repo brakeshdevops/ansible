@@ -4,6 +4,9 @@
     x: "krishna"
     val: 10
     b: true
+    m: 12
+    n: 15
+    p: 25
   tasks:
     - name: Task1
       ansible.builtin.debug:
@@ -29,3 +32,15 @@
       ansible.builtin.debug:
         msg: The value is false
       when: not b | bool
+    - name: task7
+      ansible.builtin.debug:
+        msg: "{{m}} is greatest number"
+      when: m>n and m>p
+    - name: task8
+      ansible.builtin.debug:
+        msg: "{{n}} is greatest number"
+      when: n>m and n>p
+    - name: task9
+      ansible.builtin.debug:
+        msg: "{{p}} is greatest number"
+      when: p>m and p>n
