@@ -24,4 +24,8 @@
     - name: Task5
       ansible.builtin.debug:
         msg: The value is true
-      when: not b
+      when: b
+    - name: task6
+      ansible.builtin.debug:
+        msg: The value is false
+      when:  not b
