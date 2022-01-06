@@ -2,8 +2,19 @@
   hosts: localhost
   vars:
     a: [ 12,23,34]
+    stu_age:
+      - name: krihsna
+        age: 20
+      - name: mahesh
+        age: 23
+      - name: raju
+        age: 19
   tasks:
     - name: print the list values
       loop: "{{a}}"
       debug:
         msg: "{{item}}"
+    - name: print the student name and age
+      loop: "{{stu_age}}"
+      debug:
+        msg: "Student Name= {{item.name}} and age ={{item.age}}"
