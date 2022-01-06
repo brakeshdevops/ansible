@@ -1,0 +1,7 @@
+- name: Loops demo
+  hosts: localhost
+  vars:
+    a: [ 12,23,34]
+  loop: "{{a}}"
+  debug:
+    msg: "{{item}}"
