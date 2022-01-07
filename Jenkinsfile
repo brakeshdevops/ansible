@@ -6,7 +6,7 @@ agent any
         {
             steps
             {
-                echo 'This is first message'
+                sh 'ansible-playbook 08-parallel-plays.yml'
             }
         }
     }
