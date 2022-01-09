@@ -1,33 +1,22 @@
-- name: Install Nginx
+- name: Install nginx
   ansible.builtin.yum:
     name: nginx
     state: installed
 
-- name: Download and UnZip the Frontend Content
+- name: ansible download role
   ansible.builtin.import_role:
     name: common
     tasks_from: download
 
-- name: Remove Old Html Web Pages
+- name: Remove html directory
   ansible.builtin.file:
     path: /usr/share/nginx/html
     state: absent
 
-- name: Create HTML Dir
-  ansible.builtin.file:
-    path: /usr/share/nginx/html
-    state: directory
-
-#- name: Copy the HTML Files
-#  ansible.builtin.copy:
-#    src: /tmp/frontend-main/static/
-#    dest: /usr/share/nginx/html/
-#    remote_src: yes
-
-- name: Unzip {{COMPONENT}}
-  ansible.builtin.unarchive:
-    src: /tmp/{{COMPONENT}}-{{APP_VERSION}}.zip
-    dest: /usr/share/nginx/html
+- name: Copy html files in static directory into html directory
+  ansible.builtin.copy:
+    src: /tmp/frontend-main/static/
+    dest: /usr/share/nginx/html/
     remote_src: yes
 
 - name: Copy roboshop reverse proxy configuration
