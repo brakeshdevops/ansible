@@ -10,7 +10,7 @@ parameters
 }
 environment
 {
-SSh=credentials('CENTOS')
+SSh=credentials('centos')
 }
     stages
     {
