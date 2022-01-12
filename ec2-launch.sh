@@ -1,5 +1,5 @@
 COMPONENT=$1
-ENV=$2
+ENV=$3
 if [ ! -z "$ENV" ]; then
   ENV="-${ENV}"
 fi
