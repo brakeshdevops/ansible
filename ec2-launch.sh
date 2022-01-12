@@ -15,7 +15,7 @@ CREATE_INSTANCE()
   if [ $? -eq 0 ]; then
     echo "Instance is already there"
   else
-    aws ec2 run-instances --launch-template LaunchTemplateId=${temp_id},Version=3 --tag-specifications "ResourceType=spot-instances-request,Tags=[{Key=Name,Value=${COMPONENT}}]" "ResourceType=instance,Tags=[{Key=Name,Value=${COMPONENT}}]"|jq
+    aws ec2 run-instances --launch-template LaunchTemplateId=${temp_id},Version=4 --tag-specifications "ResourceType=spot-instances-request,Tags=[{Key=Name,Value=${COMPONENT}}]" "ResourceType=instance,Tags=[{Key=Name,Value=${COMPONENT}}]"|jq
   fi
   sleep 10
   IPADDRESS=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=${COMPONENT}"|jq .Reservations[].Instances[].PrivateIpAddress | sed 's/"//g' | grep -v null)
