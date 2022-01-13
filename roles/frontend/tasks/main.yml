@@ -18,17 +18,17 @@
     path: /usr/share/nginx/html
     state: directory
 
-- name: Copy the HTML Files
-  ansible.builtin.copy:
-    src: /tmp/frontend-main/static/
-    dest: /usr/share/nginx/html/
-    remote_src: yes
-
-#- name: Unzip {{COMPONENT}}
-#  ansible.builtin.unarchive:
-#    src: /tmp/{{COMPONENT}}-{{APP_VERSION}}.zip
-#    dest: /usr/share/nginx/html
+#- name: Copy the HTML Files
+#  ansible.builtin.copy:
+#    src: /tmp/frontend-main/static/
+#    dest: /usr/share/nginx/html/
 #    remote_src: yes
+
+- name: Unzip {{COMPONENT}}
+  ansible.builtin.unarchive:
+    src: /tmp/{{COMPONENT}}-{{APP_VERSION}}.zip
+    dest: /usr/share/nginx/html
+    remote_src: yes
 
 - name: Copy roboshop reverse proxy configuration
   ansible.builtin.template:
