@@ -5,7 +5,7 @@
 #    remote_src: yes
 - name: Download {{COMPONENT}} from Nexus
   ansible.builtin.get_url:
-    url: http://3.239.214.238:8081//repository/{{COMPONENT}}/{{COMPONENT}}-{{APP_VERSION}}.zip
+    url: http://172.31.31.244:8081//repository/{{COMPONENT}}/{{COMPONENT}}-{{APP_VERSION}}.zip
     dest: /tmp
     username: "{{NEXUS_USERNAME}}"
     password: "{{NEXUS_PASSWORD}}"
